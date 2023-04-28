@@ -75,11 +75,11 @@ class RecognizeInvoice(object):
                     print("Billing Address Recipient: {} has confidence: {}".format(billing_address_recipient.value, billing_address_recipient.confidence))
             except:
                 pass
-            print("Invoice items:")
-            # print(invoice.fields.values()) 
-            # for idx, item in enumerate(invoice.fields.get("Items").value):
-            #     print("...Item #{}".format(idx+1))
-            #     item_description = item.value.get("Description")
+            try:
+                self.product_quantity = len(invoice.fields.get("Items").value)
+            except:
+                pass
+
             try:
                 subtotal = invoice.fields.get("SubTotal")
                 if subtotal:
