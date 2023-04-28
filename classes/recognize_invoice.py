@@ -119,8 +119,17 @@ class RecognizeInvoice(object):
 
     def get_info(self):
         return {
+            "file_name": self.file_name,
             "business_name" : self.business_name,
             "business_address": self.business_address,
+            "country": self.country,
+            "address": self.address,
+            "date": self.date,
+            "time": self.time,
+            "payment_method": self.payment_method,
             "total": self.total,
-            "date": self.date
+            "product_quantity": self.product_quantity,
+            "subtotal": self.subtotal,
+            "tax": self.tax,
+            "product_type": self.product_type,
         }
