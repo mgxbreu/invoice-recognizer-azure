@@ -122,7 +122,6 @@ class RecognizeInvoice(object):
             "country": self.country,
             "address": self.address,
             "date": self.date,
-            "time": self.time,
             "payment_method": self.payment_method,
             "total": self.total,
             "product_quantity": self.product_quantity,

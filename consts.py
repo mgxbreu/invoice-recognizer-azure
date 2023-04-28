@@ -11,7 +11,6 @@ headers = [
     "country",
     "address",
     "date",
-    "time",
     "payment_method",
     "total",
     "product_quantity",
