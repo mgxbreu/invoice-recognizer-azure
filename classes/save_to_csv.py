@@ -16,7 +16,7 @@ class SaveToCsv():
     def write_row(self, row):
         with open('data.csv', 'a') as f:
             writer = csv.DictWriter(f, fieldnames=headers)
-            s
+            
             if f.tell() == 0:
                 writer.writeheader()
 
