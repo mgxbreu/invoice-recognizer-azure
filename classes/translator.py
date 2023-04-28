@@ -1,5 +1,4 @@
-from utils import get_credentials
-
+from utils.credentials import get_credentials
 import os, requests, uuid, json
 
 KEY, ENDPOINT = get_credentials("translator")
