@@ -1,12 +1,10 @@
-from classes.recognize_invoice import RecognizeInvoice
 from classes.save_to_csv import SaveToCsv
+from utils import process_file, process_directory
+
+data = []
 
 if __name__ == '__main__':
     directory = 'facturas'
-    
-    sample = RecognizeInvoice(directory)
-    sample.recognize_invoice()
-    info = sample.get_info()
+    process_directory(directory)
     save = SaveToCsv()
-    save.save_to_csv(info)
-    print(info)
+    save.save_to_csv(data)
