@@ -48,7 +48,7 @@ class RecognizeInvoice(object):
             try:
                 vendor_address_recipient = invoice.fields.get("VendorAddressRecipient")
                 if vendor_address_recipient:
-                    print("Vendor Address Recipient: {} has confidence: {}".format(vendor_address_recipient.value, vendor_address_recipient.confidence))
+                    self.address = vendor_address_recipient.value
             except:
                 pass
             try:
