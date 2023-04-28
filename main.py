@@ -1,10 +1,10 @@
 from classes.save_to_csv import SaveToCsv
-from utils import process_file, process_directory
+from utils.file_processing import FileProcessing
 
-data = []
 
 if __name__ == '__main__':
-    directory = 'facturas'
-    process_directory(directory)
+    directory = 'traininghihi'
+    process = FileProcessing()
+    processed_data = process.process_directory(directory)
     save = SaveToCsv()
-    save.save_to_csv(data)
+    save.save_to_csv(processed_data)
