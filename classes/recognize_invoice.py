@@ -7,7 +7,7 @@ from azure.ai.formrecognizer import FormRecognizerClient
 class RecognizeInvoice(object):
 
     def __init__(self, path):
-        self.file_name = path
+        self.path = path
         self.business_name = ""
         self.business_address = ""
         self.country = ""
@@ -108,7 +108,7 @@ class RecognizeInvoice(object):
 
     def get_info(self):
         return {
-            "file_name": self.file_name,
+            "file_name": self.path,
             "business_name" : self.business_name,
             "business_address": self.business_address,
             "country": self.country,
