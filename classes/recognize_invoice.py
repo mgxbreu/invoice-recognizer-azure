@@ -1,6 +1,8 @@
 import json
 import os
 from utils import get_credentials
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.formrecognizer import FormRecognizerClient
 
 class RecognizeInvoice(object):
 
