@@ -6,7 +6,7 @@ from azure.ai.formrecognizer import FormRecognizerClient
 
 class RecognizeInvoice(object):
 
-    def __init__(self):
+    def __init__(self, path):
         self.file_name = ""
         self.business_name = ""
         self.business_address = ""
@@ -20,6 +20,7 @@ class RecognizeInvoice(object):
         self.subtotal = None
         self.tax = None
         self.product_type = ""
+        self.path = path
 
 
     def recognize_invoice(self):
@@ -28,7 +29,7 @@ class RecognizeInvoice(object):
         form_recognizer_client = FormRecognizerClient(
             endpoint=ENDPOINT, credential=AzureKeyCredential(KEY)
         )
-        with open(path_to_sample_forms, "rb") as f:
+        with open(self.path, "rb") as f:
             poller = form_recognizer_client.begin_recognize_invoices(invoice=f, locale="en-US")
         invoices = poller.result()
 
