@@ -33,7 +33,6 @@ class RecognizeInvoice(object):
         invoices = poller.result()
 
         for idx, invoice in enumerate(invoices):
-            print("--------Recognizing invoice #{}--------".format(idx+1))
             vendor_name = invoice.fields.get("VendorName")
             if vendor_name:
                 self.business_name = vendor_name.value
