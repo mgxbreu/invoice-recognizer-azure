@@ -1,12 +1,14 @@
 import os
 from classes.recognize_invoice import RecognizeInvoice
 from classes.translator import detect_language, translate
+from classes.save_to_csv import SaveToCsv
 
 class FileProcessing:
     def __init__(self):
         self.data = []
 
     def process_file(self, path):
+        save = SaveToCsv()
         sample = RecognizeInvoice(path)
         sample.recognize_invoice()
         info = sample.get_info()
@@ -15,8 +17,7 @@ class FileProcessing:
             if type(info[key] ) == str:
                 language = detect_language(info[key])
                 info[key] = translate(info[key], language)
-
-        self.data.append(info)
+        save.write_row(info)
 
     def process_directory(self, directory):
         for filename in os.listdir(directory):
@@ -27,4 +28,3 @@ class FileProcessing:
             elif os.path.isdir(path):
                 print("Exploring directory: ", path)
                 self.process_directory(path)
-        return self.data
