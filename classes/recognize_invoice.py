@@ -105,6 +105,14 @@ class RecognizeInvoice(object):
                     print("Remittance Address: {} has confidence: {}".format(remittance_address.value, remittance_address.confidence))
             except:
                 pass
+            try:
+                payment_details = invoice.fields.get("PaymentDetails")
+                if payment_details:
+                    self.payment_method = payment_details
+                    print("❤️‍🔥 PaymentDetails: {} has confidence: {}".format(payment_details.value, payment_details.confidence))
+            except:
+                pass
+           
 
     def get_info(self):
         return {
