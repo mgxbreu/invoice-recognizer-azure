@@ -34,36 +34,49 @@ class RecognizeInvoice(object):
         invoices = poller.result()
 
         for idx, invoice in enumerate(invoices):
-            vendor_name = invoice.fields.get("VendorName")
-            if vendor_name:
-                self.business_name = vendor_name.value
-            vendor_address = invoice.fields.get("VendorAddress")
-            if vendor_address:
-                self.business_address = vendor_address.value
-            vendor_address_recipient = invoice.fields.get("VendorAddressRecipient")
-            if vendor_address_recipient:
-                print("Vendor Address Recipient: {} has confidence: {}".format(vendor_address_recipient.value, vendor_address_recipient.confidence))
+            try:
+                vendor_name = invoice.fields.get("VendorName")
+                if vendor_name:
+                    self.business_name = vendor_name.value
+            except:
+                pass
+            try:
+                vendor_address = invoice.fields.get("VendorAddress")
+                if vendor_address:
+                    self.business_address = vendor_address.value
+            except:
+                pass
+            try:
+                vendor_address_recipient = invoice.fields.get("VendorAddressRecipient")
+                if vendor_address_recipient:
+                    print("Vendor Address Recipient: {} has confidence: {}".format(vendor_address_recipient.value, vendor_address_recipient.confidence))
             customer_address = invoice.fields.get("CustomerAddress")
             if customer_address:
                 print("Customer Address: {} has confidence: {}".format(customer_address.value, customer_address.confidence))
             customer_address_recipient = invoice.fields.get("CustomerAddressRecipient")
             if customer_address_recipient:
                 print("Customer Address Recipient: {} has confidence: {}".format(customer_address_recipient.value, customer_address_recipient.confidence))
-            invoice_date = invoice.fields.get("InvoiceDate")
-            if invoice_date:
-                self.date = invoice_date.value
-            invoice_total = invoice.fields.get("InvoiceTotal")
-            if invoice_total:
-                self.total = invoice_total.value
+                invoice_date = invoice.fields.get("InvoiceDate")
+                if invoice_date:
+                    self.date = invoice_date.value
+            except:
+                pass
+            try:
+                invoice_total = invoice.fields.get("InvoiceTotal")
+                if invoice_total:
+                    self.total = invoice_total.value
             purchase_order = invoice.fields.get("PurchaseOrder")
             if purchase_order:
                 print("Purchase Order: {} has confidence: {}".format(purchase_order.value, purchase_order.confidence))
-            billing_address = invoice.fields.get("BillingAddress")
-            if billing_address:
-                print("Billing Address: {} has confidence: {}".format(billing_address.value, billing_address.confidence))
-            billing_address_recipient = invoice.fields.get("BillingAddressRecipient")
-            if billing_address_recipient:
-                print("Billing Address Recipient: {} has confidence: {}".format(billing_address_recipient.value, billing_address_recipient.confidence))
+                billing_address = invoice.fields.get("BillingAddress")
+                if billing_address:
+                    print("Billing Address: {} has confidence: {}".format(billing_address.value, billing_address.confidence))
+            except:
+                pass
+            try:
+                billing_address_recipient = invoice.fields.get("BillingAddressRecipient")
+                if billing_address_recipient:
+                    print("Billing Address Recipient: {} has confidence: {}".format(billing_address_recipient.value, billing_address_recipient.confidence))
             shipping_address = invoice.fields.get("ShippingAddress")
             if shipping_address:
                 print("Shipping Address: {} has confidence: {}".format(shipping_address.value, shipping_address.confidence))
@@ -98,21 +111,21 @@ class RecognizeInvoice(object):
             #     amount = item.value.get("Amount")
             #     if amount:
             #         print("......Amount: {} has confidence: {}".format(amount.value, amount.confidence))
-            subtotal = invoice.fields.get("SubTotal")
-            if subtotal:
+                subtotal = invoice.fields.get("SubTotal")
+                if subtotal:
                 print("Subtotal: {} has confidence: {}".format(subtotal.value, subtotal.confidence))
-            total_tax = invoice.fields.get("TotalTax")
-            if total_tax:
+                total_tax = invoice.fields.get("TotalTax")
+                if total_tax:
                 print("Total Tax: {} has confidence: {}".format(total_tax.value, total_tax.confidence))
-            service_address = invoice.fields.get("ServiceAddress")
-            if service_address:
-                print("Service Address: {} has confidence: {}".format(service_address.value, service_address.confidence))
+                service_address = invoice.fields.get("ServiceAddress")
+                if service_address:
+                    print("Service Address: {} has confidence: {}".format(service_address.value, service_address.confidence))
             service_address_recipient = invoice.fields.get("ServiceAddressRecipient")
             if service_address_recipient:
                 print("Service Address Recipient: {} has confidence: {}".format(service_address_recipient.value, service_address_recipient.confidence))
-            remittance_address = invoice.fields.get("RemittanceAddress")
-            if remittance_address:
-                print("Remittance Address: {} has confidence: {}".format(remittance_address.value, remittance_address.confidence))
+                remittance_address = invoice.fields.get("RemittanceAddress")
+                if remittance_address:
+                    print("Remittance Address: {} has confidence: {}".format(remittance_address.value, remittance_address.confidence))
             remittance_address_recipient = invoice.fields.get("RemittanceAddressRecipient")
             if remittance_address_recipient:
                 print("Remittance Address Recipient: {} has confidence: {}".format(remittance_address_recipient.value, remittance_address_recipient.confidence))
