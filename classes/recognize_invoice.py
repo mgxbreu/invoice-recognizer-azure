@@ -1,6 +1,6 @@
 import json
 import os
-
+from utils import get_credentials
 
 class RecognizeInvoice(object):
 
@@ -21,19 +21,7 @@ class RecognizeInvoice(object):
 
 
     def recognize_invoice(self):
-        path_to_sample_forms = os.path.abspath(os.path.join(os.path.abspath(__file__),
-                                                            "..","..","./training/macdonalds-20190323.pdf"))
-
-        # [START recognize_invoices]
-        from azure.core.credentials import AzureKeyCredential
-        from azure.ai.formrecognizer import FormRecognizerClient
-
-
-        credentials = json.load(open('credentials.json'))
-
-        ENDPOINT = credentials['endpoint']
-        KEY = credentials['apiKey']
-
+        KEY, ENDPOINT = get_credentials("formRecognizer")
 
         form_recognizer_client = FormRecognizerClient(
             endpoint=ENDPOINT, credential=AzureKeyCredential(KEY)
