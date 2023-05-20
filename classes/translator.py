@@ -1,6 +1,5 @@
 from consts import service_headers, ENDPOINT
-import os, requests, uuid, json
-
+import requests
 
 def detect_language(text):
     path = '/detect?api-version=3.0'

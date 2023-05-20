@@ -5,7 +5,6 @@ class SaveToCsv():
     def __init__(self):
         self.data = []
         
-
     def save_to_csv(self, data: dict):
         self.data.append(data)
         with open('data.csv', 'a') as f:
