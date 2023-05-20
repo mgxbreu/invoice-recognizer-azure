@@ -1,5 +1,3 @@
-import json
-import os
 from utils.credentials import get_credentials
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.formrecognizer import FormRecognizerClient
@@ -20,19 +18,19 @@ class RecognizeInvoice(object):
         self.subtotal = None
         self.tax = None
         self.product_type = ""
-
-
-    def recognize_invoice(self):
+        self.invoices = None
         KEY, ENDPOINT = get_credentials("formRecognizer")
-
-        form_recognizer_client = FormRecognizerClient(
+        self.form_recognizer_client = FormRecognizerClient(
             endpoint=ENDPOINT, credential=AzureKeyCredential(KEY)
         )
-        with open(self.path, "rb") as f:
-            poller = form_recognizer_client.begin_recognize_invoices(invoice=f, locale="en-US")
-        invoices = poller.result()
 
-        for idx, invoice in enumerate(invoices):
+    def recognize_invoice(self):
+        with open(self.path, "rb") as invoice_file:
+            poller = self.form_recognizer_client.begin_recognize_invoices(invoice=invoice_file, locale="en-US")
+        self.invoices = poller.result()
+
+    def extract_information(self):
+        for invoice in self.invoices:
             try:
                 vendor_name = invoice.fields.get("VendorName")
                 if vendor_name:
@@ -113,8 +111,11 @@ class RecognizeInvoice(object):
             except:
                 pass
            
+    def start_process(self):
+        self.recognize_invoice()
+        self.extract_information()
 
-    def get_info(self):
+    def serialize_information(self):
         return {
             "file_name": self.path,
             "business_name" : self.business_name,

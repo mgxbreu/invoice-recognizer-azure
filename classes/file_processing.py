@@ -9,9 +9,9 @@ class FileProcessing:
 
     def process_file(self, path):
         save = SaveToCsv()
-        sample = RecognizeInvoice(path)
-        sample.recognize_invoice()
-        info = sample.get_info()
+        recognize_invoice = RecognizeInvoice(path)
+        recognize_invoice.start_process()
+        info = recognize_invoice.serialize_information()
         print(info)
         for key in info:
             if type(info[key] ) == str:
