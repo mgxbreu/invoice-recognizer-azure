@@ -19,7 +19,6 @@ def translate(text, language):
     params = f'&from={language}&to=es'
     constructed_url = ENDPOINT + path + params
 
-    # You can pass more than one object in body.
     body = [{
         'text' : text
     }]
@@ -30,5 +29,3 @@ def translate(text, language):
     response = response[0]
     response = response['text']
     return response
-
-# print(json.dumps(response, sort_keys=True, indent=4, ensure_ascii=False, separators=(',', ': ')))
